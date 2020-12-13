@@ -65,14 +65,18 @@ random.seed(3)
 
 config = configparser.ConfigParser()
 config.read("settings.ini")
-TOPO = config["Def"]["TOPO"]
-CONTRACTS_NUM = config["Def"]["CONTRACTS_NUM"]
+TOPO = config["Def"]["TOPO_NAME"]
+CONTRACTS_NUM = config["Def"]["ACON_NUM"]
+CTYPE1 = config["Def"]["CTYPE1"]
+CTYPE2 = config["Def"]["CTYPE2"]
+CTYPE3 = config["Def"]["CTYPE3"]
+T_MAX = config["Def"]["T_MAX"]
 PATH = 'Contracts/{}'.format(TOPO)
 
 H1=nx.read_graphml('topo/{}.graphml'.format(TOPO))
 H = nx.Graph(H1)
 
-with open('{}/C={}_{}.yaml'.format(PATH, CONTRACTS_NUM, TOPO), 'r') as f:
+with open('{}/C={}_TMAX-{}_CT1-{}_CT2-{}_CT3-{}.yaml'.format(PATH, CONTRACTS_NUM, T_MAX, CTYPE1, CTYPE2, CTYPE3), 'r') as f:
 	Contracts = yaml.load(f, Loader=yaml.FullLoader)
 
 print("Info about topology:")
