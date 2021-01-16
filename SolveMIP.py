@@ -115,7 +115,7 @@ def eval_cnstr7(model, q, V, K):
 
 
 def get_result(status, model, V, K, M, time):
-    correctness = ""
+    correctness = "correct"
     answer = np.zeros([len(V), len(V), len(K)])
     if (status != None) and (status == OptimizationStatus.OPTIMAL):
         count = 0
@@ -126,6 +126,8 @@ def get_result(status, model, V, K, M, time):
             if (answer[i1][i2][i3] != 0):
                 count += 1 
         print('Number of non zero variables: ' + str(count))
+        print('Optimal solution: ', model.objective_values[0])
+        print('Number of constraints: ', len(model.constrs))
         print('----------------------')
     else:
         correctness = "Model infeasible"
